@@ -14,6 +14,7 @@ plugins {
     id 'java-library'
     id "org.sonarqube" version "2.7"
     id 'application'
+    id 'jacoco'
 }
 
 repositories {
@@ -42,6 +43,18 @@ jar {
 		attributes 'Main-Class': 'bridge_crane_project.TestDrive.ExchangableTestDrive'
 	}
 }
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.7
+            }
+        }
+    }
+}
+
+check.dependsOn jacocoTestCoverageVerification
 
 /*task(runSimple, dependsOn: 'classes', type: JavaExec) {
    main = 'com.mrhaki.java.Simple'
