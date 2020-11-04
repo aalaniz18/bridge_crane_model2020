@@ -35,12 +35,12 @@ dependencies {
 }
 
 application {
-    mainClassName = 'bridge_crane_project.TestDrive.ExchangableTestDrive'
+    mainClassName = 'bridge_crane_project.TestDrive.DJTestDrive'
 }
 
 jar {
 	manifest {
-		attributes 'Main-Class': 'bridge_crane_project.TestDrive.ExchangableTestDrive'
+		attributes 'Main-Class': 'bridge_crane_project.TestDrive.DJTestDrive'
 	}
 }
 
