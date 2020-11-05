@@ -22,6 +22,7 @@ public class BridgeCraneModel implements BridgeCraneModelInterface, Runnable {
 	int b;
 	int contador = 10;
 	Thread thread;
+	Random random = new Random();
 
 	public BridgeCraneModel() {
 		matriz = new int [filas][columnas];
@@ -118,7 +119,6 @@ public class BridgeCraneModel implements BridgeCraneModelInterface, Runnable {
 	}
 	
 	public void inicializarMatriz()	{
-		Random random = new Random();
 		a = random.nextInt(8);
 		b = random.nextInt(8);
 		
