@@ -1,38 +1,33 @@
 package bridge_crane_project.UnitTest;
 
+import bridge_crane_project.Model.BridgeCraneModel;
+import org.junit.Test;
 import static org.junit.Assert.*;
 
-import org.junit.Test;
-
-import bridge_crane_project.Model.BridgeCraneModel;
-
-public class LimitTest 
-{
+/**
+ * 
+ */
+public class LimitTest {
 
 	@Test
-	public void goRightTest() 
-	{
+	public void goRightTest() {
 		BridgeCraneModel bridge = new BridgeCraneModel();
 		
-		while(bridge.getColumnaActual()!=7)
-		{
+		while (bridge.getColumnaActual() != 7)	{
 			bridge = new BridgeCraneModel();
 		}
 
 		int columnaInicial = bridge.getColumnaActual();
 		bridge.irDerecha();
 		int columnaFinal = bridge.getColumnaActual();
-		
-		assertEquals(columnaInicial,columnaFinal);
+		assertEquals(columnaInicial, columnaFinal);
 	}
 	
 	@Test
-	public void goLeftTest() 
-	{
+	public void goLeftTest() {
 		BridgeCraneModel bridge = new BridgeCraneModel();
 		
-		while(bridge.getColumnaActual()!=0)
-		{
+		while (bridge.getColumnaActual() != 0) {
 			bridge = new BridgeCraneModel();
 		}
 
@@ -40,16 +35,14 @@ public class LimitTest
 		bridge.irIzquierda();
 		int columnaFinal = bridge.getColumnaActual();
 		
-		assertEquals(columnaInicial,columnaFinal);
+		assertEquals(columnaInicial, columnaFinal);
 	}
 	
 	@Test
-	public void goUpTest() 
-	{
+	public void goUpTest() {
 		BridgeCraneModel bridge = new BridgeCraneModel();
 		
-		while(bridge.getFilaActual()!=0)
-		{
+		while (bridge.getFilaActual() != 0)	{
 			bridge = new BridgeCraneModel();
 		}
 
@@ -57,16 +50,14 @@ public class LimitTest
 		bridge.irArriba();
 		int columnaFinal = bridge.getFilaActual();
 		
-		assertEquals(columnaInicial,columnaFinal);
+		assertEquals(columnaInicial, columnaFinal);
 	}
 	
 	@Test
-	public void goDownTest() 
-	{
+	public void goDownTest() {
 		BridgeCraneModel bridge = new BridgeCraneModel();
 		
-		while(bridge.getFilaActual()!=7)
-		{
+		while (bridge.getFilaActual() != 7)	{
 			bridge = new BridgeCraneModel();
 		}
 
@@ -74,7 +65,6 @@ public class LimitTest
 		bridge.irAbajo();
 		int columnaFinal = bridge.getFilaActual();
 		
-		assertEquals(columnaInicial,columnaFinal);
+		assertEquals(columnaInicial, columnaFinal);
 	}
-
 }

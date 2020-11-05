@@ -1,12 +1,13 @@
 package bridge_crane_project.Model;
 
-import java.util.*;
-
 import bridge_crane_project.View.BPMObserver;
 import bridge_crane_project.View.BeatObserver;
+import java.util.*;
 
-public class HeartModel implements HeartModelInterface, Runnable 
-{
+/**
+ * 
+*/
+public class HeartModel implements HeartModelInterface, Runnable {
 	private static HeartModel singleton;
 	private static int cuenta;
 	
@@ -23,17 +24,16 @@ public class HeartModel implements HeartModelInterface, Runnable
 		thread.start();
 	}
 
-	public static HeartModel getInstance()
-	{
-		if(singleton==null)
+	public static HeartModel getInstance() {
+		if (singleton == null) {
 			singleton = new HeartModel();
-		else
+		} else {
 			cuenta++;
+		}
 		return singleton;
 	}
 	
-	public void clear()
-	{
+	public void clear() {
 		beatObservers.clear();
 		System.out.println(beatObservers.size());
 		bpmObservers.clear();
@@ -41,35 +41,34 @@ public class HeartModel implements HeartModelInterface, Runnable
 	}
 	
 	public void run() {
-			for(;;) {
+		for (;;) {
 			notifyBPMObservers();
 			
 			try {
 				Thread.sleep(1);
 				time2--;
-				if(time2==0)
-				{
+				if (time2 == 0) {
 					int change = random.nextInt(10);
 					if (random.nextInt(2) == 0) {
 						change = 0 - change;
 					}
-					int rate = 60000/(time + change);
+					int rate = 60000 / (time + change);
 					if (rate < 120 && rate > 50) {
 						time += change;
 						notifyBeatObservers();
 					}
 					time2 = time;
 				}
-			} catch (Exception e) {}
+			} catch (Exception e) {
+			}
 		}
 	}
 	
 	public int getHeartRate() {
-		return 60000/time;
+		return 60000 / time;
 	}
 	
-	public int getCuenta()
-	{
+	public int getCuenta() {
 		return cuenta;
 	}
 
@@ -85,8 +84,8 @@ public class HeartModel implements HeartModelInterface, Runnable
 	}
 
 	public void notifyBeatObservers() {
-		for(int i = 0; i < beatObservers.size(); i++) {
-			BeatObserver observer = (BeatObserver)beatObservers.get(i);
+		for (int i = 0; i < beatObservers.size(); i++) {
+			BeatObserver observer = (BeatObserver) beatObservers.get(i);
 			observer.updateBeat();
 		}
 	}
@@ -103,8 +102,8 @@ public class HeartModel implements HeartModelInterface, Runnable
 	}
 
 	public void notifyBPMObservers() {
-		for(int i = 0; i < bpmObservers.size(); i++) {
-			BPMObserver observer = (BPMObserver)bpmObservers.get(i);
+		for (int i = 0; i < bpmObservers.size(); i++) {
+			BPMObserver observer = (BPMObserver) bpmObservers.get(i);
 			observer.updateBPM();
 		}
 	}

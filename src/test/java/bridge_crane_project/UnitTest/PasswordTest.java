@@ -1,17 +1,15 @@
 package bridge_crane_project.UnitTest;
 
+import org.junit.Test;
 import static org.junit.Assert.*;
 
-import org.junit.Test;
-
-import bridge_crane_project.Controller.BridgeCraneController;
-import bridge_crane_project.Model.BridgeCraneModel;
-
+/**
+ * 
+ */
 public class PasswordTest {
 
 	@Test
-	public void rightPassWordTest() 
-	{
+	public void rightPassWordTest() {
 /* 		BridgeCraneModel model = new BridgeCraneModel();
 		BridgeCraneController controller = new BridgeCraneController(model,1);
 		
@@ -21,12 +19,11 @@ public class PasswordTest {
 		controller.setBPM(rightPassword);
 
 		assertEquals(expected,model.getBPM()); */
-		assertTrue("Pass Test",true);
+		assertTrue("Pass Test", true);
 	}
 	
 	@Test
-	public void wrongPasswordTest() 
-	{
+	public void wrongPasswordTest() {
 /* 		BridgeCraneModel model = new BridgeCraneModel();
 		BridgeCraneController controller = new BridgeCraneController(model,1);
 		
@@ -35,7 +32,7 @@ public class PasswordTest {
 		
 		controller.setBPM(wrongPassword);
 		assertEquals(expected,model.getBPM()); */
-		assertTrue("Pass Test",true);
+		assertTrue("Pass Test", true);
 	}
 
 }

@@ -4,10 +4,13 @@ import bridge_crane_project.View.BPMObserver;
 import bridge_crane_project.View.BeatObserver;
 import bridge_crane_project.View.MatrizObserver;
 
+/**
+ * 
+*/
 public class BridgeCraneAdapter implements BeatModelInterface {
 	BridgeCraneModelInterface bridgeCrane;
 	
-	public BridgeCraneAdapter(BridgeCraneModelInterface bridgeCrane){
+	public BridgeCraneAdapter(BridgeCraneModelInterface bridgeCrane) {
 		this.bridgeCrane = bridgeCrane;
 	}
 
@@ -46,15 +49,13 @@ public class BridgeCraneAdapter implements BeatModelInterface {
 		bridgeCrane.removeObserver(o);
 	}
 	
-	public int[][] getMatriz(){
+	public int[][] getMatriz() {
 		return bridgeCrane.getMatriz();
 	}
 
-	public void setBPM(int bpm) 
-	{
+	public void setBPM(int bpm) {
 		bridgeCrane.setBPM(bpm);
 		
 	}
 
 }
-

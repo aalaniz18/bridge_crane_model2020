@@ -1,9 +1,4 @@
 package bridge_crane_project.View;
-    
-import java.awt.*;
-import java.awt.event.*;
-
-import javax.swing.*;
 
 import bridge_crane_project.Controller.BeatController;
 import bridge_crane_project.Controller.BridgeCraneController;
@@ -12,6 +7,13 @@ import bridge_crane_project.Controller.HeartController;
 import bridge_crane_project.Model.BeatModelInterface;
 import bridge_crane_project.Model.BridgeCraneAdapter;
 
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+/**
+ * 
+*/
 public class BridgeCraneView extends DJView implements MatrizObserver {
     JPanel[][] posiciones;
     JButton upBPMButton;
@@ -22,20 +24,17 @@ public class BridgeCraneView extends DJView implements MatrizObserver {
     boolean flag = false;
     
     public BridgeCraneView(ControllerInterface controller, BeatModelInterface model) {	
-		
-    	super(controller,model);
+    	super(controller, model);
     	verificar();
-    	if(type == 3)
-    	model.registerObserver((MatrizObserver)this);	
+    	if (type == 3) {
+			model.registerObserver((MatrizObserver) this);
+		}
     }
     
     public void createView() {
-    	if(type == 1 || type ==2)
-    	{
+    	if (type == 1 || type == 2) {
     		super.createView();
-    	}
-    	else
-    	{
+    	} else {
     		JFrame.setDefaultLookAndFeelDecorated(false);
         	viewPanel = new JPanel(new GridLayout(1, 2));
             viewFrame = new JFrame("View");              
@@ -51,53 +50,44 @@ public class BridgeCraneView extends DJView implements MatrizObserver {
             viewFrame.getContentPane().add(viewPanel, BorderLayout.CENTER);
             viewFrame.pack();
             viewFrame.setVisible(true);
-
-            viewFrame.setLocation(148,200);
-
+            viewFrame.setLocation(148, 200);
     	}
-		
 	}
   
-    public void createView2()
-    {
-    	int filas=8;
-    	int columnas=8;
+    public void createView2() {
+    	int filas = 8;
+    	int columnas = 8;
     	
     	JFrame.setDefaultLookAndFeelDecorated(false);
     	posiciones = new JPanel[filas][columnas]; 
-		JPanel	deposito = new JPanel(new GridLayout(filas,columnas));
-		for(int i=0;i<filas;i++)
-    		for(int j=0;j<columnas;j++)
-    		{
-    			posiciones[i][j]=new JPanel(new GridLayout(1,1));
+		JPanel deposito = new JPanel(new GridLayout(filas, columnas));
+		for (int i = 0; i < filas; i++) {
+    		for (int j = 0; j < columnas; j++) {
+    			posiciones[i][j] = new JPanel(new GridLayout(1, 1));
     			posiciones[i][j].setBackground(Color.GRAY);
     			deposito.add(posiciones[i][j]);
     		}
-		
+		}
 		positionNumber = new JLabel("Posicion de la grua: ", SwingConstants.LEFT);
 		JSplitPane general = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 		general.setBottomComponent(deposito);
 		general.setTopComponent(positionNumber);
-
 		
     	paredes = new JFrame("Deposito");
     	paredes.setSize(new Dimension(1000, 800));
     	paredes.getContentPane().add(general, BorderLayout.CENTER);
-    	updateMatriz(filas,columnas);
+    	updateMatriz(filas, columnas);
         paredes.pack();
         paredes.setVisible(true);
         paredes.setSize(500, 500);
         paredes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        paredes.setLocation(310,200);
+        paredes.setLocation(310, 200);
     }
     
     public void createControls() {
-    	if(type == 1 || type==2)
-    	{
+    	if (type == 1 || type == 2) {
     		super.createControls();
-    	}
-    	else
-    	{
+    	} else {
     		JFrame.setDefaultLookAndFeelDecorated(false);
             controlFrame = new JFrame("Control");
             controlFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -138,7 +128,7 @@ public class BridgeCraneView extends DJView implements MatrizObserver {
             bpmTextField = new JTextField(2);
             bpmLabel = new JLabel("Password:", SwingConstants.RIGHT);
             setBPMButton = new JButton("Set");
-            setBPMButton.setSize(new Dimension(10,40));
+            setBPMButton.setSize(new Dimension(10, 40));
             increaseBPMButton = new JButton(">>");
             decreaseBPMButton = new JButton("<<");
             upBPMButton = new JButton("^");
@@ -165,8 +155,8 @@ public class BridgeCraneView extends DJView implements MatrizObserver {
             insideControlPanel.add(downBPMButton);
             controlPanel.add(insideControlPanel);
             
-            bpmLabel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
-            bpmOutputLabel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+            bpmLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+            bpmOutputLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
             controlFrame.getRootPane().setDefaultButton(setBPMButton);
             controlFrame.getContentPane().add(controlPanel, BorderLayout.CENTER);
@@ -174,31 +164,28 @@ public class BridgeCraneView extends DJView implements MatrizObserver {
             controlFrame.pack();
             controlFrame.setVisible(true);
             
-            controlFrame.setLocation(150,269);
+            controlFrame.setLocation(150, 269);
     	}
-    	
     }
 
     public void actionPerformed(ActionEvent event) {
 		super.actionPerformed(event);
 		if (event.getSource() == upBPMButton) {
-				controller.up();
+			controller.up();
 		} else if (event.getSource() == downBPMButton) {
-
-				controller.down();
+			controller.down();
 		}
     }
 
 	public void updateBPM() {
-		
 		super.updateBPM();
 		if (model != null) {
 			int bpm = model.getBPM();
-			if(bpm == -10){
+			if (bpm == -10) {
 				if (bpmOutputLabel != null) {
         			bpmOutputLabel.setText("Disponible");
 				}				
-			} else if(bpm == -20){
+			} else if (bpm == -20) {
 				if (bpmOutputLabel != null) {
         			bpmOutputLabel.setText("Cargando");
 				}
@@ -206,58 +193,47 @@ public class BridgeCraneView extends DJView implements MatrizObserver {
 		}
 	}
 	
-	public void updateMatriz(int filas, int columnas){
+	public void updateMatriz(int filas, int columnas) {
 		int [][] matriz = new int[filas][columnas];
 		BridgeCraneAdapter m = (BridgeCraneAdapter) model;
 		matriz = m.getMatriz();
 		
-		for (int i=0; i<filas; i++)
-			for (int j=0; j<columnas; j++)
-			{
-				if (matriz[i][j]==1)
-					{
-						posiciones[i][j].setBackground(new Color(255,255,255));
-						positionNumber.setText("Posicion de la grua: " + "Fila: " + i + ", Columna: " + j);
-					}
-				else if (matriz[i][j] == 2)
-				{
-					posiciones[i][j].setBackground(new Color(90,58,7));
-				}
-				else if (matriz[i][j] == 3)
-				{
+		for (int i = 0; i < filas; i++) {
+			for (int j = 0; j < columnas; j++) {
+				if (matriz[i][j] == 1) {
+					posiciones[i][j].setBackground(new Color(255, 255, 255));
+					positionNumber.setText("Posicion de la grua: "
+					 + "Fila: " + i + ", Columna: " + j);
+				} else if (matriz[i][j] == 2) {
+					posiciones[i][j].setBackground(new Color(90, 58, 7));
+				} else if (matriz[i][j] == 3) {
 					posiciones[i][j].setBackground(Color.RED);
-				}
-				else if (matriz[i][j] == 4)
-				{
+				} else if (matriz[i][j] == 4) {
 					posiciones[i][j].setBackground(Color.GREEN);
+				} else {
+					posiciones[i][j].setBackground(Color.GRAY);
 				}
-				else 
-					posiciones[i][j].setBackground(Color.GRAY);			
-			}	
+			}
+		}	
 	}
 	
-	public void verificar()
-	{
-		try
-		{
+	public void verificar() {
+		try	{
 			BeatController b = (BeatController) controller;
 			type = 1;
+		} catch (ClassCastException e) {
 		}
-		catch(ClassCastException e){}
 	
-		try
-		{
+		try {
 			HeartController h = (HeartController) controller;
 			type = 2;
+		} catch (ClassCastException r) {
 		}
-		catch(ClassCastException r) {}
 		
-		try
-		{
+		try {
 			BridgeCraneController c = (BridgeCraneController) controller;
 			type = 3;
+		} catch (ClassCastException t) {
 		}
-		catch(ClassCastException t) {}
-		
 	}
 }

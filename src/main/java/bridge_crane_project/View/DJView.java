@@ -1,13 +1,15 @@
 package bridge_crane_project.View;
-    
-import java.awt.*;
-import java.awt.event.*;
-
-import javax.swing.*;
 
 import bridge_crane_project.Controller.ControllerInterface;
 import bridge_crane_project.Model.BeatModelInterface;
 
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+/**
+ * 
+*/
 public class DJView implements ActionListener,  BeatObserver, BPMObserver {
 	BeatModelInterface model;
 	ControllerInterface controller;
@@ -30,8 +32,8 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
     public DJView(ControllerInterface controller, BeatModelInterface model) {	
 		this.controller = controller;
 		this.model = model;
-		model.registerObserver((BeatObserver)this);
-		model.registerObserver((BPMObserver)this);
+		model.registerObserver((BeatObserver) this);
+		model.registerObserver((BPMObserver) this);
     }
     
     public void createView() {
@@ -51,7 +53,7 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
         viewFrame.pack();
         viewFrame.setVisible(true);
         
-        viewFrame.setLocation(148,200);	//Se agrega para mejorar la organizacion de las ventanas en pantalla.
+        viewFrame.setLocation(148, 200);	//Se agrega para mejorar la organizacion de las ventanas en pantalla.
 	}
   
   
@@ -94,7 +96,7 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
         bpmTextField = new JTextField(2);
         bpmLabel = new JLabel("Enter BPM:", SwingConstants.RIGHT);
         setBPMButton = new JButton("Set");
-        setBPMButton.setSize(new Dimension(10,40));
+        setBPMButton.setSize(new Dimension(10, 40));
         increaseBPMButton = new JButton(">>");
         decreaseBPMButton = new JButton("<<");
         setBPMButton.addActionListener(this);
@@ -115,8 +117,8 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
         insideControlPanel.add(buttonPanel);
         controlPanel.add(insideControlPanel);
         
-        bpmLabel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
-        bpmOutputLabel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+        bpmLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        bpmOutputLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
         controlFrame.getRootPane().setDefaultButton(setBPMButton);
         controlFrame.getContentPane().add(controlPanel, BorderLayout.CENTER);
@@ -124,7 +126,7 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
         controlFrame.pack();
         controlFrame.setVisible(true);
         
-        controlFrame.setLocation(150,292); //Se agrega para mejorar la organizacion de las ventanas en pantalla.
+        controlFrame.setLocation(150, 292); //Se agrega para mejorar la organizacion de las ventanas en pantalla.
     }
 
 	public void enableStopMenuItem() {
@@ -171,7 +173,7 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
   
 	public void updateBeat() {
 		if (beatBar != null) {
-			 beatBar.setValue(100);
+			beatBar.setValue(100);
 		}
 	}
 }

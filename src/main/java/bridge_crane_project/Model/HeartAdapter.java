@@ -4,6 +4,9 @@ import bridge_crane_project.View.BPMObserver;
 import bridge_crane_project.View.BeatObserver;
 import bridge_crane_project.View.MatrizObserver;
 
+/**
+ * 
+*/
 public class HeartAdapter implements BeatModelInterface {
 	HeartModelInterface heart;
  

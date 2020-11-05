@@ -3,6 +3,9 @@ package bridge_crane_project.Model;
 import bridge_crane_project.View.BPMObserver;
 import bridge_crane_project.View.BeatObserver;
 
+/**
+ * 
+*/
 public interface HeartModelInterface {
 	int getHeartRate();
 	int	getCuenta();

@@ -1,5 +1,8 @@
 package bridge_crane_project.Controller;
   
+/**
+ * 
+*/
 public interface ControllerInterface {
 	void start();
 	void stop();
