@@ -5,9 +5,6 @@
  * For more details take a look at the Java Libraries chapter in the Gradle
  * User Manual available at https://docs.gradle.org/6.0/userguide/java_library_plugin.html
  */
- //apply plugin: 'application'
- 
- //mainClassName = 'DJTestDrive'
 
 plugins {
     // Apply the java-library plugin to add support for Java Library
@@ -15,6 +12,9 @@ plugins {
     id "org.sonarqube" version "2.7"
     id 'application'
     id 'jacoco'
+    id 'checkstyle'
+    id 'pmd'
+    id "com.github.spotbugs" version "4.5.1"
 }
 
 repositories {
@@ -55,6 +55,72 @@ jacocoTestCoverageVerification {
 }
 
 check.dependsOn jacocoTestCoverageVerification
+
+checkstyle {
+    ignoreFailures = true
+    toolVersion = '7.8.1'
+    configFile file("config/checkstyle/checkstyle.xml")
+}
+
+checkstyleMain {
+    source = 'src/main/java'
+}
+
+checkstyleTest {
+    source = 'src/test/java'
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+pmd {
+    ignoreFailures = true
+}
+
+tasks.withType(Pmd) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+spotbugs {
+    ignoreFailures = true
+    //showStackTraces = true
+    //showProgress = true
+    //effort = 'default'
+    //reportLevel = 'default'
+}
+
+spotbugsMain {
+    reports {
+        html {
+            enabled = true
+            destination = file("$buildDir/reports/spotbugs/main/spotbugs.html")
+            //stylesheet = 'fancy-hist.xsl'
+        }
+    }
+}
+
+/* findbugs {
+    ignoreFailures = true
+    toolVersion = "3.0.1"
+    sourceSets=[sourceSets.main]
+    reportsDir = file("$project.buildDir/reports/findbugs")
+    effort = "max"
+    reportLevel = "low"
+}
+
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+} */
 
 /*task(runSimple, dependsOn: 'classes', type: JavaExec) {
    main = 'com.mrhaki.java.Simple'
