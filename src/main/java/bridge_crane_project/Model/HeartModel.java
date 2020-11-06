@@ -18,6 +18,7 @@ public class HeartModel implements HeartModelInterface, Runnable {
     int bpm = 90;
 	Random random = new Random(System.currentTimeMillis());
 	Thread thread;
+	boolean run = true;
 
 	private HeartModel() {
 		thread = new Thread(this);
@@ -41,7 +42,7 @@ public class HeartModel implements HeartModelInterface, Runnable {
 	}
 	
 	public void run() {
-		for (;;) {
+		while (run) {
 			notifyBPMObservers();
 			
 			try {

@@ -10,6 +10,7 @@ import javax.swing.*;
 public class BeatBar extends JProgressBar implements Runnable { 
     JProgressBar progressBar;
 	Thread thread;
+	boolean run = true;
 
 	public BeatBar() {
 		thread = new Thread(this);
@@ -18,7 +19,7 @@ public class BeatBar extends JProgressBar implements Runnable {
 	}
 
 	public void run() {
-		for (;;) {
+		while (run) {
 			int value = getValue();
 			value = (int) (value * .75);
 			setValue(value);
