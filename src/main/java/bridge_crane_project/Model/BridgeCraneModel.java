@@ -23,6 +23,7 @@ public class BridgeCraneModel implements BridgeCraneModelInterface, Runnable {
 	int contador = 10;
 	Thread thread;
 	Random random = new Random();
+	boolean run = true;
 
 	public BridgeCraneModel() {
 		matriz = new int [filas][columnas];
@@ -32,7 +33,7 @@ public class BridgeCraneModel implements BridgeCraneModelInterface, Runnable {
 	}
 
 	public void run() {
-		for (;;) {
+		while(run) {
 			try {
 				notifyBPMObservers();
 				notifyMatrizObserver();	
