@@ -64,7 +64,7 @@ public class BridgeCraneController implements ControllerInterface {
 				model.setBPM(-10);
 			}
  		} else {
-			JOptionPane.showMessageDialog(null, "Contasenia incorrecta");
+			//JOptionPane.showMessageDialog(null, "Contasenia incorrecta");			
  		}
  	}
 }
