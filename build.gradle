@@ -14,6 +14,7 @@ plugins {
     id 'jacoco'
     id 'checkstyle'
     id 'pmd'
+    id "de.aaschmid.cpd" version "3.1"
     id "com.github.spotbugs" version "4.5.1"
 }
 
@@ -35,13 +36,20 @@ dependencies {
 }
 
 application {
-    mainClassName = 'bridge_crane_project.TestDrive.DJTestDrive'
+    mainClassName = 'bridge_crane_project.TestDrive.ExchangableTestDrive'
 }
 
 jar {
 	manifest {
-		attributes 'Main-Class': 'bridge_crane_project.TestDrive.DJTestDrive'
+		attributes 'Main-Class': 'bridge_crane_project.TestDrive.ExchangableTestDrive'
 	}
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
 }
 
 jacocoTestCoverageVerification {
@@ -55,6 +63,8 @@ jacocoTestCoverageVerification {
 }
 
 check.dependsOn jacocoTestCoverageVerification
+check.dependsOn jacocoTestReport
+
 
 checkstyle {
     ignoreFailures = true
@@ -103,6 +113,18 @@ spotbugsMain {
             destination = file("$buildDir/reports/spotbugs/main/spotbugs.html")
             //stylesheet = 'fancy-hist.xsl'
         }
+    }
+}
+
+cpd {
+    language = 'java'
+    ignoreFailures = true
+}
+
+cpdCheck {
+    reports {
+        xml.enabled = false
+        text.enabled = true
     }
 }
 
