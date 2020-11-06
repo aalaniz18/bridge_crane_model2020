@@ -176,4 +176,17 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public ArrayList<BeatObserver> getbeatObservers() {
+		return this.beatObservers;
+	}
+	
+	public ArrayList<BPMObserver> getBPMObserver() {
+		return this.bpmObservers;
+	}
+
+	public boolean getIsRunning() {
+		return this.sequencer.isRunning();
+	}
+
 }

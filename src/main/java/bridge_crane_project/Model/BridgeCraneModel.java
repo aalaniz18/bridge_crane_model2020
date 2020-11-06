@@ -232,4 +232,16 @@ public class BridgeCraneModel implements BridgeCraneModelInterface, Runnable {
 		return b;
 	}
 
+	public ArrayList<BeatObserver> getbeatObservers() {
+		return this.beatObservers;
+	}
+	
+	public ArrayList<BPMObserver> getBPMObserver() {
+		return this.bpmObservers;
+	}
+
+	public ArrayList<MatrizObserver> getMatrizObserver() {
+		return this.matrizObservers;
+	}
+
 }

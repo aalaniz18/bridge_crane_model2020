@@ -108,4 +108,13 @@ public class HeartModel implements HeartModelInterface, Runnable {
 			observer.updateBPM();
 		}
 	}
+
+	
+	public ArrayList<BeatObserver> getbeatObservers() {
+		return this.beatObservers;
+	}
+	
+	public ArrayList<BPMObserver> getBPMObserver() {
+		return this.bpmObservers;
+	}
 }
