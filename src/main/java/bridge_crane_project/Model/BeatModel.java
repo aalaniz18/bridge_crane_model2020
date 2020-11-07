@@ -13,9 +13,13 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
     Sequencer sequencer;
 	ArrayList<BeatObserver> beatObservers = new ArrayList<BeatObserver>();
 	ArrayList<BPMObserver> bpmObservers = new ArrayList<BPMObserver>();
-    int bpm = 90;
+    int bpm;
     Sequence sequence;
-    Track track;
+	Track track;
+	
+	public BeatModel (){
+		bpm=90;
+	}
  
 	public void initialize() {
         setUpMidi();
