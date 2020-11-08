@@ -51,8 +51,8 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
 		this.bpm = bpm;
 
 		//FIX
-		sequencer.setMicrosecondPosition(Long.valueOf(0));
-        sequencer.setTickPosition(Long.valueOf(0)); 
+		//sequencer.setMicrosecondPosition(Long.valueOf(0));
+        //sequencer.setTickPosition(Long.valueOf(0));
             
 		sequencer.setTempoInBPM((float) getBPM());
 		notifyBPMObservers();

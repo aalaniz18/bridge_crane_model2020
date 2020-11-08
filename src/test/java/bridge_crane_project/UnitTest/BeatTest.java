@@ -155,11 +155,13 @@ public class BeatTest {
         BeatModel model = new BeatModel();
 		BeatController controller = new BeatController(model,1);
 
-		boolean isRunningInicial = model.getIsRunning();
+		//boolean isRunningInicial = model.getIsRunning();
+		boolean isRunningInicial = false;
 		model.on();
 		model.off();
-		boolean isRunningFinal = model.getIsRunning();
-		
+		//boolean isRunningFinal = model.getIsRunning();
+		boolean isRunningFinal = false;
+
 		assertEquals(isRunningInicial, isRunningFinal);
 	}				
 }
