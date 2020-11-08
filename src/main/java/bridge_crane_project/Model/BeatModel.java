@@ -129,8 +129,9 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
 
      public void buildTrackAndStart() {
         int[] trackList = {35, 0, 46, 0};
-    
-        sequence.deleteTrack(null);
+		
+		Track t=sequence.createTrack();
+        sequence.deleteTrack(t);
         track = sequence.createTrack();
 
       	makeTracks(trackList);
