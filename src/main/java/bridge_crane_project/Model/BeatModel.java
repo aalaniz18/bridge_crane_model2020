@@ -50,6 +50,14 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
     public void setBPM(int bpm) {
 		this.bpm = bpm;
 
+		if(!sequencer.isOpen()){
+			try {
+				sequencer.open();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
 		//FIX
 		//sequencer.setMicrosecondPosition(Long.valueOf(0));
         //sequencer.setTickPosition(Long.valueOf(0));

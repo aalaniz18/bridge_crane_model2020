@@ -17,4 +17,4 @@ before_script:
   - sleep 3 # give xvfb some time to start
 
 after_failure:
-  - if [ -f /home/travis/build/aalaniz18/bridge_crane_model2020/build/reports/tests/test/index.html ]; then lynx -dump /home/travis/build/aalaniz18/bridge_crane_model2020/gradle/wrapper/index.html; fi
+  - if [ -f /home/travis/build/aalaniz18/bridge_crane_model2020/build/reports/tests/test/index.html ]; then lynx -dump /home/travis/build/aalaniz18/bridge_crane_model2020/build/reports/tests/test/index.html; fi
