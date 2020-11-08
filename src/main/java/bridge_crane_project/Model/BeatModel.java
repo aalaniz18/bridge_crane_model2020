@@ -10,15 +10,20 @@ import javax.sound.midi.*;
  * 
 */
 public class BeatModel implements BeatModelInterface, MetaEventListener {
-    Sequencer sequencer;
+	Sequencer sequencer;
 	ArrayList<BeatObserver> beatObservers = new ArrayList<BeatObserver>();
 	ArrayList<BPMObserver> bpmObservers = new ArrayList<BPMObserver>();
-    int bpm;
-    Sequence sequence;
+	int bpm;
+	Sequence sequence;
 	Track track;
-	
-	public BeatModel (){
-		bpm=90;
+
+	public BeatModel() {
+		bpm = 90;
+		try {
+			sequence = new Sequence(Sequence.PPQ, 4);
+		} catch (InvalidMidiDataException e) {
+			e.printStackTrace();
+		}
 	}
  
 	public void initialize() {
