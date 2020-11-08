@@ -24,14 +24,15 @@ public class ST8 {
     @When("posicionar grua en un limite")
     public void posicionar_grua_en_un_limite() {
         while (bridgeCraneModel.getColumnaActual() != 7)	{
-			bridgeCraneModel = new BridgeCraneModel();
+            bridgeCraneModel = new BridgeCraneModel();
+            controller = new BridgeCraneController(bridgeCraneModel, 1);
 		}
         pos_inicial = bridgeCraneModel.getMatriz();
     }
 
     @When("mover grua mas alla del limite")
     public void mover_grua_mas_alla_del_limite() {
-        bridgeCraneModel.irDerecha();
+        controller.increaseBPM();
         pos_final = bridgeCraneModel.getMatriz();
     }
 
