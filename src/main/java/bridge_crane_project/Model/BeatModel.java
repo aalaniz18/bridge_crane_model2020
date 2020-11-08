@@ -51,10 +51,10 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
 		this.bpm = bpm;
 
 		//FIX
-		sequencer.setMicrosecondPosition(0);
-        sequencer.setTickPosition(0); 
+		sequencer.setMicrosecondPosition(Long.valueOf(0));
+        sequencer.setTickPosition(Long.valueOf(0)); 
             
-		sequencer.setTempoInBPM(getBPM());
+		sequencer.setTempoInBPM((float) getBPM());
 		notifyBPMObservers();
     }
   
@@ -140,8 +140,8 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
      public void buildTrackAndStart() {
         int[] trackList = {35, 0, 46, 0};
 		
-		Track t=sequence.createTrack();
-        sequence.deleteTrack(t);
+		//Track t=sequence.createTrack();
+        sequence.deleteTrack(track);
         track = sequence.createTrack();
 
       	makeTracks(trackList);
