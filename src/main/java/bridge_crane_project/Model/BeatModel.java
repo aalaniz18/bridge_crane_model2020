@@ -24,6 +24,12 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
 		} catch (InvalidMidiDataException e) {
 			e.printStackTrace();
 		}
+		try {
+			sequencer = MidiSystem.getSequencer();
+		} catch (MidiUnavailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
  
 	public void initialize() {
