@@ -33,6 +33,19 @@ application {
     mainClassName = 'bridge_crane_project.TestDrive.ExchangableTestDrive'
 }
 
+task ExchangableTestDrive(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'bridge_crane_project.TestDrive.ExchangableTestDrive'
+    }
+    archiveBaseName = 'ExchangableTestDrive'
+    from {
+        configurations.compileClasspath.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+    with jar
+}
+
 task BridgeCraneTestDrive(type: Jar) {
     manifest {
         attributes 'Main-Class': 'bridge_crane_project.TestDrive.BridgeCraneTestDrive'
@@ -89,6 +102,7 @@ build.dependsOn BridgeCraneTestDrive
 build.dependsOn DJTestDrive
 build.dependsOn HeartTestDrive
 build.dependsOn SimultaneousTestDrive
+build.dependsOn ExchangableTestDrive
 /**********************************************************************************/
 
 // Cucumber configurations
@@ -145,7 +159,7 @@ checkstyle {
     ignoreFailures = true
     toolVersion = '7.8.1'
     configFile file("config/checkstyle/checkstyle.xml")
-    showViolations = true
+    showViolations = false
 }
 checkstyleMain {
     source = 'src/main/java'
@@ -180,6 +194,7 @@ tasks.withType(Pmd) {
 // Spotbugs configurations
 spotbugsMain {
     ignoreFailures = true
+    showStackTraces = false
     effort = 'max'
     reportLevel = 'high'
     reports {
@@ -193,6 +208,7 @@ spotbugsMain {
 
 spotbugsTest {
     ignoreFailures = true
+    showStackTraces = false
     effort = 'max'
     reportLevel = 'high'
     reports {

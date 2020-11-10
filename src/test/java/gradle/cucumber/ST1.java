@@ -16,7 +16,7 @@ public class ST1 {
 
     @Given("test drive ejecutado")
     public void test_drive_ejecutado() {
-        System.out.println("----------------------- Se ejecuta el Given -------------------------------------");
+        System.out.println("----------------------- Empieza el System Test -------------------------------------");
         bridgeCraneModel = new BridgeCraneModel();
         controller = new BridgeCraneController(bridgeCraneModel, 1);
     }
@@ -45,7 +45,7 @@ public class ST1 {
 
     @After
     public void end() {
-        System.out.println("Process End");
+        System.out.println("----------------------- Termina el System Test -------------------------------------");
     }
 
 }

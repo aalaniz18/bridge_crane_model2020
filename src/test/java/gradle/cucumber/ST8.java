@@ -16,7 +16,7 @@ public class ST8 {
 
     @Given("test drive ejecutado2")
     public void test_drive_ejecutado2() {
-        System.out.println("----------------------- Se ejecuta el Given -------------------------------------");
+        System.out.println("----------------------- Empieza el System Test -------------------------------------");
         bridgeCraneModel = new BridgeCraneModel();
         controller = new BridgeCraneController(bridgeCraneModel, 1);
     }
